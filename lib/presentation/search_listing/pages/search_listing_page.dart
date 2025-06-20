@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zillow/utils/app_colors.dart';
@@ -72,15 +73,31 @@ class SearchListingPage extends StatelessWidget {
                       child: Stack(
                         children: [
                           Positioned.fill(
-                            child: Image.asset(
-                              "assets/homes_img/${index + 1}.jpg",
-                              fit: BoxFit.cover,
+                            child: CarouselSlider.builder(
+                              itemCount: 5,
+                              itemBuilder: (context, imgIndex, realIndex) {
+                                return Stack(
+                                  children: [
+                                    Image.asset(
+                                      "assets/homes_img/${(index % 3) + 1}.jpg",
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                    ),
+                                    Container(
+                                      color: AppColors.black.withAlpha(64),
+                                      child: SizedBox.expand(),
+                                    ),
+                                  ],
+                                );
+                              },
+                              options: CarouselOptions(
+                                viewportFraction: 1.0,
+                                autoPlay: false,
+                                enableInfiniteScroll: true,
+                                scrollDirection: Axis.horizontal,
+                                height: double.infinity,
+                              ),
                             ),
-                          ),
-
-                          Container(
-                            color: AppColors.black.withAlpha(64),
-                            child: SizedBox.expand(),
                           ),
 
                           Padding(
@@ -212,7 +229,7 @@ class SearchListingPage extends StatelessWidget {
                     ),
                   ),
                 );
-              }, childCount: 10),
+              }, childCount: 1000000000),
             ),
           ],
         ),
