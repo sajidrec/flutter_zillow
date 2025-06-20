@@ -90,6 +90,7 @@ class SearchListingPage extends StatelessWidget {
                                           "assets/homes_img/${(index % 10) + 1}.jpg",
                                           fit: BoxFit.fill,
                                           width: double.infinity,
+                                          height: double.infinity,
                                         ),
                                         Container(
                                           color: AppColors.black.withAlpha(64),
