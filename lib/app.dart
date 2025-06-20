@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zillow/controller_binders.dart';
 import 'package:zillow/routes/app_pages.dart';
 import 'package:zillow/routes/app_routes.dart';
 
@@ -12,6 +13,7 @@ class Zillow extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: AppPages.pages,
       initialRoute: AppRoutes.searchListings,
+      initialBinding: ControllerBinders(),
       title: "Zillow",
     );
   }
