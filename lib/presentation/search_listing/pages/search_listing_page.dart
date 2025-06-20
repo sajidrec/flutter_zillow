@@ -14,6 +14,7 @@ class SearchListingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+
         body: GetBuilder<FabShowHideController>(
           builder: (controller) {
             return CustomScrollView(
@@ -87,7 +88,7 @@ class SearchListingPage extends StatelessWidget {
                                       children: [
                                         Image.asset(
                                           "assets/homes_img/${(index % 10) + 1}.jpg",
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.fill,
                                           width: double.infinity,
                                         ),
                                         Container(
