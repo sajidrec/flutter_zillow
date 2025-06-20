@@ -119,7 +119,7 @@ class SearchListingPage extends StatelessWidget {
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
                                             8,
-                                          ), // 👈 rounded corners
+                                          ),
                                         ),
                                         side: BorderSide(
                                           strokeAlign: 2,
@@ -176,6 +176,7 @@ class SearchListingPage extends StatelessWidget {
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
                                           "\$ 135,000,000",
@@ -183,27 +184,34 @@ class SearchListingPage extends StatelessWidget {
                                             color: AppColors.white,
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
+                                            height: 1.0,
                                           ),
                                         ),
+                                        SizedBox(height: 5),
                                         Text(
                                           "70 Bright St, Jersey City, NJ USA",
                                           style: TextStyle(
                                             color: AppColors.white,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
+                                            height: 1.0,
                                           ),
                                         ),
+                                        SizedBox(height: 3),
                                         Text(
                                           "4 beds  3 baths  367 sqm",
                                           style: TextStyle(
                                             color: AppColors.white,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
+                                            height: 1.0,
                                           ),
                                         ),
                                       ],
                                     ),
+
                                     Spacer(),
+
                                     Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
@@ -214,8 +222,116 @@ class SearchListingPage extends StatelessWidget {
                                             color: AppColors.white,
                                           ),
                                         ),
-                                        SvgPicture.asset(
-                                          "assets/icons/pictures.svg",
+                                        InkWell(
+                                          onTap: () {
+                                            final mediaQuery = MediaQuery.of(
+                                              context,
+                                            );
+                                            final appBarHeight = 69 + 20;
+
+                                            final bottomSheetHeight =
+                                                mediaQuery.size.height -
+                                                appBarHeight;
+                                            showModalBottomSheet(
+                                              backgroundColor: AppColors.white,
+                                              context: context,
+                                              isScrollControlled: true,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.vertical(
+                                                      top: Radius.circular(20),
+                                                    ),
+                                              ),
+                                              builder: (context) {
+                                                return SizedBox(
+                                                  height: bottomSheetHeight,
+                                                  width: double.infinity,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                              left: 15,
+                                                              right: 15,
+                                                              top: 10,
+                                                              bottom: 10,
+                                                            ),
+                                                        child: Row(
+                                                          children: [
+                                                            CircleAvatar(
+                                                              radius: 20,
+                                                              backgroundImage:
+                                                                  AssetImage(
+                                                                    "assets/agent_img/agent.jpg",
+                                                                  ),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  "Marty Waite",
+                                                                  style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  "phoenicia real estate",
+                                                                  style: TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color:
+                                                                        AppColors
+                                                                            .bluishGray,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        child: ListView.separated(
+                                                          shrinkWrap: true,
+                                                          itemBuilder: (
+                                                            context,
+                                                            index,
+                                                          ) {
+                                                            return Image.asset(
+                                                              "assets/listing_detail_images/${index + 22}.jpg",
+                                                            );
+                                                          },
+                                                          separatorBuilder: (
+                                                            context,
+                                                            index,
+                                                          ) {
+                                                            return const SizedBox(
+                                                              height: 2,
+                                                            );
+                                                          },
+                                                          itemCount: 35,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          child: SvgPicture.asset(
+                                            "assets/icons/pictures.svg",
+                                          ),
                                         ),
                                       ],
                                     ),
