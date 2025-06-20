@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:zillow/presentation/search_listing/controllers/favourite_item_controller.dart';
 import 'package:zillow/utils/app_colors.dart';
 
 import '../controllers/fab_show_hide_controller.dart';
@@ -85,7 +86,7 @@ class SearchListingPage extends StatelessWidget {
                                     return Stack(
                                       children: [
                                         Image.asset(
-                                          "assets/homes_img/${(index % 3) + 1}.jpg",
+                                          "assets/homes_img/${(index % 10) + 1}.jpg",
                                           fit: BoxFit.cover,
                                           width: double.infinity,
                                         ),
@@ -169,12 +170,33 @@ class SearchListingPage extends StatelessWidget {
                                           ),
                                         ),
                                         Spacer(),
-                                        SvgPicture.asset(
-                                          "assets/icons/heart_small.svg",
-                                          colorFilter: ColorFilter.mode(
-                                            AppColors.white,
-                                            BlendMode.srcIn,
-                                          ),
+                                        GetBuilder<FavouriteItemController>(
+                                          builder: (controller) {
+                                            return InkWell(
+                                              onTap: () {
+                                                bool isFavourite = controller
+                                                    .getIsFavourite(
+                                                      itemId: index,
+                                                    );
+
+                                                controller.setIsFavouriteStatus(
+                                                  itemId: index,
+                                                  status: !isFavourite,
+                                                );
+                                              },
+                                              child: SvgPicture.asset(
+                                                "assets/icons/${controller.getIsFavourite(itemId: index) ? "heart_solid" : "heart_small"}.svg",
+                                                colorFilter: ColorFilter.mode(
+                                                  controller.getIsFavourite(
+                                                        itemId: index,
+                                                      )
+                                                      ? AppColors.red
+                                                      : AppColors.white,
+                                                  BlendMode.srcIn,
+                                                ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),
